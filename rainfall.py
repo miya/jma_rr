@@ -1,4 +1,7 @@
-import requests,glob,datetime,os
+import os
+import glob
+import datetime
+import requests
 from PIL import Image
 
 def get_image():
