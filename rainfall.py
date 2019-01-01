@@ -1,7 +1,8 @@
 import os
 import glob
-import datetime
+import dropbox
 import requests
+import datetime
 from tqdm import tqdm
 from PIL import Image
 
@@ -17,13 +18,21 @@ def get_image():
     print('[complete] get_image')
 
 def make_gif():
-    file_name = (datetime.datetime.now() - datetime.timedelta(days=1)).strftime('%Y-%m-%d') + '.gif'
     files = sorted(glob.glob('*.png'))
     images = [Image.open(i) for i in files]
-    images[0].save(file_name, save_all=True, append_images=images[1:], duration=50, loop=0)
+    images[0].save(FILE_NAME, save_all=True, append_images=images[1:], duration=50, loop=0)
     [os.remove(f) for f in files]
     print('[complete] make_gif')
 
+def send_dropbox():
+    access_token = os.environ('DROPBOX_ACCESS_TOKEN')
+    dbx = dropbox.Dropbox(access_token)
+    with open(FILE_NAME, 'rb') as f:
+        dbx.files_upload(f.read(), '/' + FILE_NAME)
+    print('[complete] send_dropbox')
+
 if __name__ == '__main__':
+    FILE_NAME = (datetime.datetime.now() - datetime.timedelta(days=1)).strftime('%Y-%m-%d') + '.gif'
     get_image()
     make_gif()
+    send_dropbox()
