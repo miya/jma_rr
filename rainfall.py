@@ -33,6 +33,7 @@ def send_dropbox():
 
 if __name__ == '__main__':
     FILE_NAME = (datetime.datetime.now() - datetime.timedelta(days=1)).strftime('%Y-%m-%d') + '.gif'
+    print('FILE_NAME:', FILE_NAME)
     get_image()
     make_gif()
     send_dropbox()
