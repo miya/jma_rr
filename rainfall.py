@@ -25,7 +25,7 @@ def make_gif():
     print('[complete] make_gif')
 
 def send_dropbox():
-    access_token = os.environ('DROPBOX_ACCESS_TOKEN')
+    access_token = os.environ.get('DROPBOX_ACCESS_TOKEN')
     dbx = dropbox.Dropbox(access_token)
     with open(FILE_NAME, 'rb') as f:
         dbx.files_upload(f.read(), '/' + FILE_NAME)
