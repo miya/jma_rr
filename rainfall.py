@@ -34,7 +34,6 @@ def send_dropbox():
 if __name__ == '__main__':
     JST = timezone(timedelta(hours=+9), 'JST')
     FILE_NAME = (datetime.now(JST) - timedelta(days=1)).strftime('%Y-%m-%d') + '.gif'
-    print('FILE_NAME:', FILE_NAME)
     get_image()
     make_gif()
     send_dropbox()
