@@ -6,4 +6,4 @@ install:
   - pip3 install -r requirements.txt
 
 script:
-  - python3 rainfall.py
+  - python3 jma_rr.py
