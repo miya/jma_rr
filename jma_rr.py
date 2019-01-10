@@ -6,6 +6,9 @@ from tqdm import tqdm
 from PIL import Image
 from datetime import datetime, timedelta, timezone
 
+'''画像取得メソッド
+気象庁のレーダー・ナウキャスト(https://www.jma.go.jp/jp/radnowc/)にアクセスし、前日の1日分の画像(5分毎にアップロードされるので5*12=288)をダウンロードします。
+`'''
 def get_image():
     time1 = (datetime.now(JST) - timedelta(days=(1)))
     time2 = datetime(year=time1.year, month=time1.month, day=time1.day)
@@ -17,6 +20,10 @@ def get_image():
             w.write(req.content)
     print('[complete] get_image')
 
+'''gif作成メソッド
+画像取得メソッドのダウンロードした画像をPillowを使いgifを作成します。
+gif作成後使用した画像は全て削除します。
+'''
 def make_gif():
     files = sorted(glob.glob('*.png'))
     images = [Image.open(i) for i in files]
@@ -24,6 +31,10 @@ def make_gif():
     [os.remove(f) for f in files]
     print('[complete] make_gif')
 
+'''Dropboxに保存するためのメソッド
+作成したgifをDropboxに保存します。
+予めDropboxAPI(https://www.dropbox.com/developers/apps/create)にて作成したアクセストークンをTravisCIのEnvironmentVariablesに登録します。
+'''
 def send_dropbox():
     access_token = os.environ.get('DROPBOX_ACCESS_TOKEN')
     dbx = dropbox.Dropbox(access_token)
