@@ -1,5 +1,5 @@
 # jma_rr
-[![Build Status](https://travis-ci.org/0x0u/rainfall.svg?branch=master)](https://travis-ci.org/0x0u/rainfall)
+[![Build Status](https://travis-ci.org/0x0u/jma_rr.svg?branch=master)](https://travis-ci.org/0x0u/jma_rr)
 
 https://qiita.com/0x0/items/f14bfa90d102af8f0e74
 
