@@ -22,9 +22,10 @@ def set_timeData():
 `'''
 def get_image(parts):
     url = 'http://www.jma.go.jp/jp/radnowc/imgs/radar/000/{}-00.png'.format(parts)
-    req = requests.get(url)
-    with open(parts + '.png', "wb") as w:
-            w.write(req.content)
+    r = requests.get(url)
+    if r.status_code == 200:
+        with open(parts + '.png', "wb") as w:
+                w.write(r.content)
 
 '''gif作成メソッド
 画像取得メソッドでダウンロードした画像をPillowを使いgifを作成します。
