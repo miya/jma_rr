@@ -12,7 +12,7 @@ https://qiita.com/0x0/items/f14bfa90d102af8f0e74
 1. このリポジトリをcloneした後、自分のリポジトリにpush
 2. [DropboxAPI](https://www.dropbox.com/developers/apps)にてアクセストークンを取得
 3. [TravisCI](https://travis-ci.org/)にてjma_rrリポジトリを登録する
-4. More optionsからSettingに移動して、EnvironmentVariables(環境変数)を設定  
-name: DROPBOX_ACCESS_TOKEN value: 'Dropboxのアクセストークン'
-5. 同じくSettingからCronJobsの設定(Intervalをdailyにした場合は設定した時間を起点に24時間後に実行される)  
+4. More optionsからSettingに移動して、EnvironmentVariables(DropBoxの環境変数)を設定  
+```name: DROPBOX_ACCESS_TOKEN value: 'Dropboxのアクセストークン'```
+5. SettingからCronJobsの設定(Intervalをdailyにした場合は設定した時間を起点に24時間後に実行される)  
 Branch: master, Interval: daily, Options: Always run
