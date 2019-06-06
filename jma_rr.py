@@ -31,7 +31,6 @@ def get_image(timeData):
 gif作成後使用した画像は全て削除します。
 '''
 def make_gif():
-    fname = (datetime.now(jst) - timedelta(days=1)).strftime('%Y-%m-%d') + '.gif'
     files = sorted(glob.glob('*.png'))
     images = [Image.open(i) for i in files]
     images[0].save(fname, save_all=True, append_images=images[1:], duration=50, loop=0)
@@ -45,8 +44,8 @@ def make_gif():
 def send_dropbox():
     access_token = os.environ.get('DROPBOX_ACCESS_TOKEN')
     dbx = dropbox.Dropbox(access_token)
-    with open(file_name, 'rb') as f:
-        dbx.files_upload(f.read(), '/' + file_name)
+    with open(fname, 'rb') as f:
+        dbx.files_upload(f.read(), '/' + fname)
     print('[complete] send_dropbox')
 
 '''メイン処理
@@ -54,9 +53,12 @@ TravisCIのタイムゾーンがUTCなのでJSTに変更。
 '''
 if __name__ == '__main__':
     jst = timezone(timedelta(hours=+9), 'JST')
+    fname = (datetime.now(jst) - timedelta(days=1)).strftime('%Y-%m-%d') + '.gif'
     timeData = get_timeData()
+
     with Pool(processes=3) as p:
         p.map(get_image, timeData)
     print('[complete] get_image')
+
     make_gif()
     send_dropbox()
