@@ -9,7 +9,7 @@ https://qiita.com/0x0/items/f14bfa90d102af8f0e74
 <img src="https://user-images.githubusercontent.com/34241526/50583477-cabc1b80-0eac-11e9-81f2-5afe2947baa6.gif">
 
 ## Usage
-1. リポジトリをcloneした後リポジトリ内のjma_rr.pyと.travis.ymlを新たに作成した自分のリポジトリにpush
+1. リポジトリをcloneした後、リポジトリ内のjma_rr.pyと.travis.ymlを新たに作成した自分のリポジトリにpush
 2. [DropboxAPI](https://www.dropbox.com/developers/apps)にてアクセストークンを取得
 3. [TravisCI](https://travis-ci.org/)にてjma_rrリポジトリを登録する
 4. Settings > Settings（jma_rrリポジトリの）> EnvironmentVariables（DropBoxの環境変数）を設定  
