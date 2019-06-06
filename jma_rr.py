@@ -59,4 +59,4 @@ if __name__ == '__main__':
         p.map(get_image, timeData)
     print('[complete] get_image')
     make_gif()
-    # send_dropbox()
+    send_dropbox()
