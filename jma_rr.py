@@ -1,5 +1,4 @@
 import os
-import glob
 import dropbox
 import requests
 from PIL import Image
