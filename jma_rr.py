@@ -17,7 +17,7 @@ def getTime():
 
 '''画像取得メソッド
 気象庁のレーダー・ナウキャスト(https://www.jma.go.jp/jp/radnowc/)にアクセスし、前日の1日分の観測画像(5分毎にアップロードされるので5*12=288)をダウンロードします。
-ダウンロードはmultiprocessingを使い並行処理で行います。
+ダウンロードはmultiprocessingを使い並行処理で行います。なお画像ファイルはローカルには保存せずにバイナリデータを取得してbytesIOに渡し画像オブジェクトにする。
 `'''
 def getImg(time):
     url = 'http://www.jma.go.jp/jp/radnowc/imgs/radar/000/{}-00.png'.format(time)
@@ -28,7 +28,7 @@ def getImg(time):
 
 '''Dropboxに保存するためのメソッド
 作成したgifをDropboxに保存します。
-予めDropboxAPI(https://www.dropbox.com/developers/apps/create)にて作成したアクセストークンをTravisCIのEnvironmentVariablesに登録します。
+予めDropboxAPI(https://www.dropbox.com/developers/apps/create)で作成したアクセストークンをTravisCIのEnvironmentVariablesに登録します。
 '''
 def sendDropbox():
     access_token = os.environ.get('DROPBOX_ACCESS_TOKEN')
