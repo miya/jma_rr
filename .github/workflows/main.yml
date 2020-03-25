@@ -1,0 +1,20 @@
+
+name: workflow
+
+on:
+  schedule:
+    - cron:  "00 15 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: install requreiments
+      run: pip3 install -r requirements.txt
+      
+    - name: run jma_rr
+      run: python3 jma_rr.py
+      env:
+        DROPBOX_ACCESS_TOKEN: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
